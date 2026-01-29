@@ -34,5 +34,5 @@ class MaintenanceRecordAdmin(admin.ModelAdmin):
     list_display = ('asset', 'issue_reported', 'maintenance_date', 'performed_by')
     list_filter = ('maintenance_date',)
     search_fields = ('asset__name', 'performed_by')
-    date_hierarchy = 'maintenance_date'
+    date_hierarchy = ('maintenance_date')
 

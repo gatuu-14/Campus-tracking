@@ -1,5 +1,5 @@
 from django import forms
-from .models import Asset, AssetMovement, MaintenanceRecord
+from .models import Asset, AssetMovement, MaintenanceRecord, AssetCategory
 
 class AssetForm(forms.ModelForm):
     class Meta:
@@ -14,11 +14,16 @@ class AssetForm(forms.ModelForm):
 
 
 class MovementForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=AssetCategory.objects.all(),
+        required=False,
+        help_text="Select a category to move all assets in it."
+    )
+
     class Meta:
         model = AssetMovement
-        fields = ['asset', 'from_department', 'to_department', 'remarks']
-
-
+        fields = ['asset', 'category', 'from_department', 'to_department', 'remarks']
+        
 class MaintenanceForm(forms.ModelForm):
     class Meta:
         model = MaintenanceRecord
@@ -26,3 +31,6 @@ class MaintenanceForm(forms.ModelForm):
         widgets = {
             'maintenance_date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class AssetImportForm(forms.Form):
+    csv_file = forms.FileField()

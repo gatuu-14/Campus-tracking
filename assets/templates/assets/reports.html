@@ -3,10 +3,15 @@
 {% block title %}Reports{% endblock %}
 {% block content %}
 <div class="container mt-4">
-  <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Asset Reports</h1>
-    <p class="page-subtitle">Comprehensive analytics and insights for asset management</p>
+  <!-- Page Header with Print Button -->
+  <div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+      <h1 class="page-title">Asset Reports</h1>
+      <p class="page-subtitle">Comprehensive analytics and insights for asset management</p>
+    </div>
+    <button class="btn btn-outline-success d-flex align-items-center gap-2" onclick="window.print()">
+      <i class="bi bi-printer"></i> Print Report
+    </button>
   </div>
 
   <!-- Summary Cards -->
@@ -48,10 +53,11 @@
 
   <!-- Assets by Category -->
   <div class="card shadow mb-4">
-    <div class="card-header bg-success text-white">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
       <h5 class="card-title mb-0">
         <i class="bi bi-grid me-2"></i>Assets by Category
       </h5>
+      <span class="badge bg-light text-success">{{ assets_by_category|length }} Categories</span>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -86,10 +92,11 @@
 
   <!-- Assets by Department -->
   <div class="card shadow">
-    <div class="card-header bg-success text-white">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
       <h5 class="card-title mb-0">
         <i class="bi bi-building me-2"></i>Assets by Department
       </h5>
+      <span class="badge bg-light text-success">{{ assets_by_department|length }} Departments</span>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -124,6 +131,85 @@
 </div>
 
 <style>
+  /* Print Styles */
+  @media print {
+    .page-header button,
+    .card-header .badge {
+      display: none !important;
+    }
+    
+    body {
+      background: white !important;
+      color: black !important;
+    }
+    
+    .container {
+      width: 100% !important;
+      max-width: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .card-header {
+      background: #f8f9fa !important;
+      color: black !important;
+      border-bottom: 2px solid #176e46 !important;
+    }
+    
+    .table-success {
+      background: #f8f9fa !important;
+      color: black !important;
+    }
+    
+    .badge {
+      border: 1px solid #ddd !important;
+      background: white !important;
+      color: black !important;
+    }
+    
+    .stat-card {
+      border: 1px solid #ddd !important;
+      margin-bottom: 15px !important;
+    }
+    
+    .stat-number {
+      color: black !important;
+    }
+    
+    .card-icon {
+      color: #157347 !important;
+    }
+    
+    /* Hide non-essential elements */
+    .navbar, footer, .btn {
+      display: none !important;
+    }
+    
+    /* Add page breaks */
+    .card {
+      page-break-inside: avoid;
+    }
+    
+    /* Add report header */
+    body::before {
+      content: "Asset Management Report - Generated on: {{ now|date:'F j, Y' }}";
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+  }
+
+  /* Screen Styles (unchanged) */
   .table th {
     font-weight: 600;
     text-transform: uppercase;
@@ -165,6 +251,21 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
     opacity: 0.8;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-title {
+    color: #157347;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: #6c757d;
+    margin-bottom: 0;
   }
 </style>
 {% endblock %}

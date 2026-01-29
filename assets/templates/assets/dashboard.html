@@ -205,8 +205,8 @@
         </div>
     </div>
 
-    <!-- Charts -->
-    <div class="row g-4">
+    <!-- First Row of Charts -->
+    <div class="row g-4 mb-4">
         <div class="col-md-6">
             <div class="card shadow border-0">
                 <div class="card-header bg-success text-white fw-bold d-flex align-items-center">
@@ -228,6 +228,35 @@
                 <div class="card-body p-0">
                     <div class="chart-container">
                         <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row of Charts - NEW ADDED -->
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-success text-white fw-bold d-flex align-items-center">
+                    <i class="bi bi-graph-up-arrow me-2"></i>Asset Addition Trend
+                </div>
+                <div class="card-body p-0">
+                    <div class="chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-success text-white fw-bold d-flex align-items-center">
+                    <i class="bi bi-grid me-2"></i>Assets by Category
+                </div>
+                <div class="card-body p-0">
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -303,6 +332,87 @@
             scales: {
                 y: { beginAtZero: true, ticks: { stepSize: 1 } },
                 x: { grid: { display: false } }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 13 }
+                }
+            }
+        }
+    });
+
+    // NEW: Asset Addition Trend Chart (Line)
+    const trendCtx = document.getElementById('trendChart');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: {{ trend_labels|safe }},
+            datasets: [{
+                label: 'Assets Added',
+                data: {{ trend_data|safe }},
+                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                borderColor: 'rgba(40, 167, 69, 1)',
+                borderWidth: 3,
+                pointBackgroundColor: 'rgba(40, 167, 69, 1)',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                pointRadius: 5,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: { 
+                    grid: { display: false }
+                }
+            },
+            plugins: {
+                legend: { 
+                    display: true,
+                    position: 'top',
+                    labels: { font: { size: 13 } }
+                }
+            }
+        }
+    });
+
+    // NEW: Assets by Category Chart (Bar)
+    const categoryCtx = document.getElementById('categoryChart');
+    new Chart(categoryCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ category_labels|safe }},
+            datasets: [{
+                label: 'Assets Count',
+                data: {{ category_data|safe }},
+                backgroundColor: 'rgba(108, 117, 125, 0.7)',
+                borderColor: 'rgba(108, 117, 125, 1)',
+                borderWidth: 2,
+                borderRadius: 8,
+                hoverBackgroundColor: 'rgba(108, 117, 125, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { stepSize: 1 },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: { 
+                    grid: { display: false }
+                }
             },
             plugins: {
                 legend: { display: false },

@@ -65,13 +65,19 @@ class AssetMovement(models.Model):
     date_moved = models.DateTimeField(auto_now_add=True)
     remarks = models.TextField(blank=True)
 
+    # Optional: store category for batch movement 
+    category = models.ForeignKey(AssetCategory, on_delete=models.SET_NULL, null=True, blank=True)
+
+
     def __str__(self):
         return f"{self.asset.name} moved to {self.to_department}"
 
     class Meta:
         ordering = ['-date_moved']
 
-         # Auto-update Asset when movement is saved
+        unique_together = ('asset', 'from_department', 'to_department', 'date_moved')
+
+    # Auto-update Asset when movement is saved
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.to_department:

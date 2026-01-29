@@ -33,6 +33,7 @@
             <tr>
               <th class="ps-4">#</th>
               <th>Asset</th>
+              <th>Category</th>
               <th>Moved By</th>
               <th>From Department</th>
               <th>To Department</th>
@@ -45,6 +46,13 @@
             <tr>
               <td class="ps-4 fw-semibold">{{ forloop.counter }}</td>
               <td class="fw-semibold">{{ move.asset.name }}</td>
+              <td class="fw-semibold">
+                {% if move.asset.category %}
+                  {{ move.asset.category.name }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
               <td>{{ move.moved_by.get_full_name|default:move.moved_by.username }}</td>
               <td>
                 {% if move.from_department %}

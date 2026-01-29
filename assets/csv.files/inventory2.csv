@@ -1,0 +1,19 @@
+name,category,serial_number,department,assigned_to,purchase_date,condition,status,description
+Projector,Electrical Appliances,PROJ001,Administration,Unassigned,2022-05-15,Good,Available,Epson Projector
+Printer,Electrical Appliances,PRN001,Administration,Unassigned,2021-11-20,Fair,Available,HP LaserJet
+Desktop,Computers & Laptops,DESK001,IT Department,Gatwiri,2022-03-05,Good,In Use,Lenovo Desktop
+Router,Networking Devices,NET001,IT Department,Unassigned,2020-08-10,Good,Available,Cisco Router
+Switch,Networking Devices,NET002,IT Department,Unassigned,2021-12-15,Good,Available,Netgear Switch
+Laptop,Computers & Laptops,LAP003,IT Department,Gatwiri,2023-03-01,Good,Available,Dell Inspiron
+Projector,Electrical Appliances,PROJ002,Science Department,Unassigned,2022-10-10,Good,Available,Sony Projector
+Printer,Electrical Appliances,PRN002,Library,Unassigned,2021-06-12,Fair,Available,Canon Printer
+Desktop,Computers & Laptops,DESK002,IT Department,Linda,2022-07-25,Good,In Use,HP Desktop
+Laptop,Computers & Laptops,LAP004,IT Department,Gatwiri,2023-01-30,Good,Available,Acer Laptop
+Laptop,Computers & Laptops,LAP005,IT Department,Unassigned,2023-04-10,Good,Available,Dell Latitude
+Projector,Electrical Appliances,PROJ003,Administration,Unassigned,2022-09-05,Good,Available,Epson Projector
+Printer,Electrical Appliances,PRN003,IT Department,Unassigned,2021-11-30,Fair,Available,HP LaserJet
+Router,Networking Devices,NET003,IT Department,Unassigned,2020-07-20,Good,Available,Cisco Router
+Switch,Networking Devices,NET004,IT Department,Unassigned,2021-08-15,Good,Available,Netgear Switch
+Laptop,Computers & Laptops,LAP006,IT Department,Linda,2023-05-01,Good,Available,HP ProBook
+Desktop,Computers & Laptops,DESK003,Science Department,Unassigned,2022-12-10,Good,Available,Dell Desktop
+Projector,Electrical Appliances,PROJ004,Library,Unassigned,2022-06-18,Good,Available,Sony Projector

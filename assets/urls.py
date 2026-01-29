@@ -25,7 +25,7 @@ urlpatterns = [
     path('assets/delete/<int:id>/', views.delete_asset, name='delete_asset'),
     path('assets/<int:asset_id>/checkout/', views.checkout_asset, name='checkout_asset'),
     path('assets/<int:asset_id>/return/', views.return_asset, name='return_asset'),
-
+    path('assets/import/', views.import_assets, name='import_assets'),
 
     # =====================
     # Asset Movement Views
@@ -41,7 +41,7 @@ urlpatterns = [
     path('maintenance/', views.maintenance_list, name='maintenance_list'),
     path('maintenance/add/', views.add_maintenance, name='add_maintenance'),
     path('maintenance/<int:id>/edit/', views.edit_maintenance, name='edit_maintenance'),
-    path('maintenance/<int:id>/edit/', views.delete_maintenance, name='delete_maintenance'),
+    path('maintenance/<int:id>/delete/', views.delete_maintenance, name='delete_maintenance'),
 
     # =====================
     # Reports
