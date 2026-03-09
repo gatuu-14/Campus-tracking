@@ -65,7 +65,7 @@ class AssetMovement(models.Model):
     date_moved = models.DateTimeField(auto_now_add=True)
     remarks = models.TextField(blank=True)
 
-    # Optional: store category for batch movement 
+    # Store category for batch movement 
     category = models.ForeignKey(AssetCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
 

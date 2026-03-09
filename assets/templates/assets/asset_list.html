@@ -4,167 +4,70 @@
 
 {% block content %}
 <div class="container mt-4">
+
   <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Asset Management</h1>
-    <p class="page-subtitle">View and manage all campus assets</p>
+  <div class="page-header p-4 rounded-3 mb-4 border">
+    <h1 class="h4 fw-bold mb-1">Assets</h1>
+    <p class="mb-0">View and manage all campus assets</p>
   </div>
 
-  <!-- Action Bar -->
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-success fw-bold mb-0">All Assets</h2>
-    <a href="{% url 'add_asset' %}" class="btn btn-success mb-3">
-     <i class="bi bi-plus-circle me-1"></i> Add New Asset
-   </a>
+  <!-- Action Bar + Search -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <form method="get" class="d-flex gap-2">
+      <input type="text" name="q" value="{{ query }}" class="form-control form-control-sm" placeholder="Search...">
+      <button type="submit" class="btn btn-sm btn-success">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+
+    <a href="{% url 'add_asset' %}" class="btn btn-sm btn-success">
+      <i class="bi bi-plus-circle me-1"></i> Add asset
+    </a>
   </div>
 
   <!-- Assets Table -->
   {% if assets %}
-  <div class="card shadow">
-    <div class="card-header bg-success text-white">
-      <h5 class="card-title mb-0">
-        <i class="bi bi-laptop me-2"></i>Assets List ({{ assets.count }} total)
-      </h5>
-    </div>
+  <div class="card border">
     <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-hover mb-0">
-          <thead class="table-success">
-            <tr>
-              <th class="ps-4">#</th>
-              <th>Asset Name</th>
-              <th>Category</th>
-              <th>Condition</th>
-              <th>Department</th>
-              <th>Location</th>
-              <th>Status</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-  {% for asset in assets %}
-  <tr>
-    <td class="ps-4 fw-semibold">{{ forloop.counter }}</td>
-    <td class="fw-semibold">{{ asset.name }}</td>
-    <td><span class="badge bg-info text-dark">{{ asset.category }}</span></td>
-    <td>
-      {% if asset.condition == 'Good' %}
-        <span class="badge bg-success">Good</span>
-      {% elif asset.condition == 'Fair' %}
-        <span class="badge bg-warning text-dark">Fair</span>
-      {% elif asset.condition == 'Poor' %}
-        <span class="badge bg-danger">Poor</span>
-      {% else %}
-        <span class="badge bg-secondary">{{ asset.condition }}</span>
-      {% endif %}
-    </td>
-    <td>{{ asset.department.name|default:"N/A" }}</td>
-    <td>{{ asset.department.location|default:"N/A" }}</td>
-    <td>
-      {% if asset.status == 'Available' %}
-        <span class="badge bg-success">Available</span>
-      {% elif asset.status == 'In Use' %}
-        <span class="badge bg-danger">In Use</span>
-      {% elif asset.status == 'Under Maintenance' %}
-        <span class="badge bg-warning text-dark">Maintenance</span>
-      {% else %}
-        <span class="badge bg-secondary">{{ asset.status }}</span>
-      {% endif %}
-    </td>
-    <td>
-      <div class="d-flex justify-content-center gap-2">
-        <a href="{% url 'asset_detail' asset.id %}" class="btn btn-sm btn-outline-primary" title="View Details">
-          <i class="bi bi-eye"></i>
-        </a>
-        <a href="{% url 'edit_asset' asset.id %}" class="btn btn-sm btn-primary">
-          <i class="bi bi-pencil"></i>
-        </a>
-        <a href="{% url 'delete_asset' asset.id %}" class="btn btn-sm btn-danger">
-          <i class="bi bi-trash"></i>
-        </a>
-
-        {% if asset.status == 'Available' %}
-        <form method="post" action="{% url 'checkout_asset' asset.id %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-sm btn-success">
-            <i class="bi bi-arrow-right-circle"></i> Check Out
-          </button>
-        </form>
-        {% elif asset.status == 'In Use' %}
-        <form method="post" action="{% url 'return_asset' asset.id %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-sm btn-warning">
-            <i class="bi bi-arrow-return-left"></i> Return
-          </button>
-        </form>
-        {% endif %}
-      </div>
-    </td>
-  </tr>
-  {% endfor %}
-</tbody>
-        </table>
-      </div>
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Condition</th>
+            <th>Department</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for asset in assets %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.category }}</td>
+            <td>{{ asset.condition }}</td>
+            <td>{{ asset.department.name|default:"-" }}</td>
+            <td>{{ asset.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
   {% else %}
-  <!-- Empty State -->
-  <div class="card shadow text-center py-5">
+  
+    <!-- Empty State Table -->
+  <div class="card border text-center ">
     <div class="card-body">
-      <i class="bi bi-laptop display-4 text-muted d-block mb-3"></i>
-      <h4 class="text-muted mb-3">No Assets Found</h4>
-      <p class="text-muted mb-4">Get started by adding your first asset to the system.</p>
-      <a href="{% url 'add_asset' %}" class="btn btn-success btn-lg">
-        <i class="bi bi-plus-circle me-2"></i>Add First Asset
+      <i class="bi bi-arrow-left-right display-4 d-block mb-3"></i>
+      <h5 class="mb-3">No Assets Records Found</h5>
+      <p class="mb-4">Add assets to populate the system.</p>
+      <a href="{% url 'add_asset' %}" class="btn btn-success">
+        <i class="bi bi-plus-circle me-2"></i>Add Asset
       </a>
     </div>
   </div>
   {% endif %}
 </div>
-
-<style>
-  /* Additional styling for this page */
-  .table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .table td {
-    vertical-align: middle;
-    padding: 1rem 0.75rem;
-  }
-  
-  .btn-sm {
-    padding: 0.4rem 0.6rem;
-    border-radius: 0.4rem;
-  }
-  
-  .badge {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.75rem;
-  }
-</style>
-<script>
-  // Auto-refresh the asset table every 10 seconds (without reloading the whole page)
-  setInterval(function() {
-    fetch(window.location.href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-      .then(response => response.text())
-      .then(html => {
-        // Create a temporary DOM parser
-        const parser = new DOMParser();
-        const newDoc = parser.parseFromString(html, 'text/html');
-
-        // Grab the new table body from refreshed page
-        const newTableBody = newDoc.querySelector('table tbody');
-        const currentTableBody = document.querySelector('table tbody');
-
-        if (newTableBody && currentTableBody) {
-          currentTableBody.innerHTML = newTableBody.innerHTML;
-        }
-      })
-      .catch(error => console.error('Auto-refresh error:', error));
-  }, 10000); // 10000 ms = 10 seconds
-</script>
 {% endblock %}

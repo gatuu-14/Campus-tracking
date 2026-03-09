@@ -5,123 +5,85 @@
 {% block content %}
 <div class="container mt-4">
   <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Asset Movements</h1>
-    <p class="page-subtitle">Track asset transfers, checkouts, and returns across campus</p>
+  <div class="page-header p-4 rounded-3 mb-4 border">
+    <h4 class="fw-bold mb-1">Asset Movements</h4>
+    <p class="mb-0">Track asset transfers across campus</p>
   </div>
 
   <!-- Action Bar -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-success fw-bold mb-0">Movement History</h2>
-    <a href="{% url 'add_movement' %}" class="btn btn-success">
-      <i class="bi bi-plus-circle me-2"></i>Record New Movement
+    <h5 class="fw-bold mb-0">Movement History</h5>
+    <a href="{% url 'add_movement' %}" class="btn btn-sm btn-success">
+      <i class="bi bi-plus-circle me-1"></i> Add Movement
     </a>
   </div>
 
   <!-- Movements Table -->
   {% if movements %}
-  <div class="card shadow">
-    <div class="card-header bg-success text-white">
-      <h5 class="card-title mb-0">
-        <i class="bi bi-arrow-left-right me-2"></i>Movement Records ({{ movements.count }} total)
-      </h5>
+  <div class="card border">
+    <div class="card-header ">
+      <span>Movements ({{ movements.count }})</span>
     </div>
-    <div class="card-body p-0">
-      <div class="table-responsive">
+     <div class="card-body p-0">  
         <table class="table table-hover mb-0">
-          <thead class="table-success">
-            <tr>
-              <th class="ps-4">#</th>
-              <th>Asset</th>
-              <th>Category</th>
-              <th>Moved By</th>
-              <th>From Department</th>
-              <th>To Department</th>
-              <th>Date Moved</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for move in movements %}
-            <tr>
-              <td class="ps-4 fw-semibold">{{ forloop.counter }}</td>
-              <td class="fw-semibold">{{ move.asset.name }}</td>
-              <td class="fw-semibold">
-                {% if move.asset.category %}
-                  {{ move.asset.category.name }}
-                {% else %}
-                  -
-                {% endif %}
-              </td>
-              <td>{{ move.moved_by.get_full_name|default:move.moved_by.username }}</td>
-              <td>
-                {% if move.from_department %}
-                  <span class="badge bg-light text-dark">{{ move.from_department }}</span>
-                {% else %}
-                  <span class="text-muted">-</span>
-                {% endif %}
-              </td>
-              <td>
-                {% if move.to_department %}
-                  <span class="badge bg-success">{{ move.to_department }}</span>
-                {% else %}
-                  <span class="text-muted">-</span>
-                {% endif %}
-              </td>
-              <td>{{ move.date_moved|date:"M d, Y, h:i A" }}</td>
-              <td>
-                <div class="d-flex justify-content-center gap-2">
-                  <a href="{% url 'edit_movement' move.id %}" class="btn btn-sm btn-outline-primary" title="Edit Movement">
-                    <i class="bi bi-pencil"></i>
-                  </a>
-                  <a href="{% url 'delete_movement' move.id %}" class="btn btn-sm btn-outline-danger" title="Delete Movement">
-                    <i class="bi bi-trash"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+            <thead class="table-light"> 
+          <tr>
+            <th class="ps-4">#</th>
+            <th>Asset</th>
+            <th>Category</th>
+            <th>Moved By</th>
+            <th>From Department</th>
+            <th>To Department</th>
+            <th>Date Moved</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for move in movements %}
+          <tr>
+            <td class="ps-4">{{ forloop.counter }}</td>
+            <td>{{ move.asset.name }}</td>
+            <td>
+              {% if move.asset.category %}
+                {{ move.asset.category.name }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>{{ move.moved_by.get_full_name|default:move.moved_by.username }}</td>
+            <td>
+              {% if move.from_department %}
+                {{ move.from_department }}
+              {% else %}
+                <span>-</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if move.to_department %}
+                {{ move.to_department }}
+              {% else %}
+                <span>-</span>
+              {% endif %}
+            </td>
+            <td>{{ move.date_moved|date:"M d, Y, h:i A" }}</td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
   {% else %}
   <!-- Empty State -->
-  <div class="card shadow text-center py-5">
+  <div class="card border text-center ">
     <div class="card-body">
-      <i class="bi bi-arrow-left-right display-4 text-muted d-block mb-3"></i>
-      <h4 class="text-muted mb-3">No Movements Recorded</h4>
-      <p class="text-muted mb-4">Start tracking asset movements across campus locations.</p>
-      <a href="{% url 'add_movement' %}" class="btn btn-success btn-lg">
-        <i class="bi bi-plus-circle me-2"></i>Record First Movement
+      <i class="bi bi-arrow-left-right display-4 d-block mb-3"></i>
+      <h5 class="mb-3">No Movements</h5>
+      <p class="mb-4">Record your first movement.</p>
+      <a href="{% url 'add_movement' %}" class="btn btn-success">
+        <i class="bi bi-plus-circle me-2"></i>Add Movement
       </a>
     </div>
   </div>
   {% endif %}
 </div>
-
-<style>
-  .table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .table td {
-    vertical-align: middle;
-    padding: 1rem 0.75rem;
-  }
-  
-  .btn-sm {
-    padding: 0.4rem 0.6rem;
-    border-radius: 0.4rem;
-  }
-  
-  .badge {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.75rem;
-  }
-</style>
 {% endblock %}

@@ -5,113 +5,71 @@
 {% block content %}
 <div class="container mt-4">
   <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">Maintenance Records</h1>
-    <p class="page-subtitle">View all maintenance activities performed on campus assets</p>
+ <div class="page-header p-4 rounded-3 mb-4 border">
+    <h4 class="fw-bold mb-1">Maintenance Records</h4>
+    <p class="mb-0">View all maintenance activities on campus assets</p>
   </div>
 
   <!-- Action Bar -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-success fw-bold mb-0">Maintenance History</h2>
-    <a href="{% url 'add_maintenance' %}" class="btn btn-success">
-      <i class="bi bi-plus-circle me-2"></i>Add New Record
+    <h5 class="fw-bold mb-0">Maintenance History</h5>
+    <a href="{% url 'add_maintenance' %}" class="btn btn-sm btn-success">
+      <i class="bi bi-plus-circle me-1"></i> Add Maintenance
     </a>
   </div>
 
   <!-- Maintenance Records Table -->
   {% if records %}
-  <div class="card shadow">
-    <div class="card-header bg-success text-white">
-      <h5 class="card-title mb-0">
-        <i class="bi bi-tools me-2"></i>Maintenance Records ({{ records.count }} total)
-      </h5>
+  <div class="card border">
+    <div class="card-header ">
+      <span>Records ({{ records.count }})</span>
     </div>
-    <div class="card-body p-0">
-      <div class="table-responsive">
+     <div class="card-body p-0">  
         <table class="table table-hover mb-0">
-          <thead class="table-success">
-            <tr>
-              <th class="ps-4">#</th>
-              <th>Asset</th>
-              <th>Issue Reported</th>
-              <th>Date</th>
-              <th>Performed By</th>
-              <th>Remarks</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for record in records %}
-            <tr>
-              <td class="ps-4 fw-semibold">{{ forloop.counter }}</td>
-              <td class="fw-semibold">{{ record.asset.name }}</td>
-              <td>
-                <span class="badge bg-warning text-dark">{{ record.issue_reported }}</span>
-              </td>
-              <td>{{ record.maintenance_date|date:"M d, Y" }}</td>
-              <td>
-                <span class="badge bg-info">{{ record.performed_by }}</span>
-              </td>
-              <td>
-                {% if record.remarks %}
-                  <span class="text-muted small">{{ record.remarks|truncatewords:5 }}</span>
-                {% else %}
-                  <span class="text-muted">-</span>
-                {% endif %}
-              </td>
-              <td>
-                <div class="d-flex justify-content-center gap-2">
-                  <a href="{% url 'edit_maintenance' record.id %}" class="btn btn-sm btn-outline-primary" title="Edit Record">
-                    <i class="bi bi-pencil"></i>
-                  </a>
-                  <a href="{% url 'delete_maintenance' record.id %}" class="btn btn-sm btn-outline-danger" title="Delete Record">
-                    <i class="bi bi-trash"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+            <thead class="table-light"> 
+          <tr>
+            <th class="ps-4">#</th>
+            <th>Asset</th>
+            <th>Issue Reported</th>
+            <th>Date</th>
+            <th>Performed By</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td class="ps-4">{{ forloop.counter }}</td>
+            <td>{{ record.asset.name }}</td>
+            <td>{{ record.issue_reported }}</td>
+            <td>{{ record.maintenance_date|date:"M d, Y" }}</td>
+            <td>{{ record.performed_by }}</td>
+            <td>
+              {% if record.remarks %}
+                {{ record.remarks }}
+              {% else %}
+                <span>-</span>
+              {% endif %}
+            </td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
   {% else %}
+  
   <!-- Empty State -->
-  <div class="card shadow text-center py-5">
+  <div class="card border text-center ">
     <div class="card-body">
-      <i class="bi bi-tools display-4 text-muted d-block mb-3"></i>
-      <h4 class="text-muted mb-3">No Maintenance Records</h4>
-      <p class="text-muted mb-4">Start tracking maintenance activities for your assets.</p>
-      <a href="{% url 'add_maintenance' %}" class="btn btn-success btn-lg">
-        <i class="bi bi-plus-circle me-2"></i>Add First Record
+      <i class="bi bi-arrow-left-right display-4 d-block mb-3"></i>
+      <h5 class="mb-3">No Maintenance Records</h5>
+      <p class="mb-4">Add records to track asset maintenance.</p>
+      <a href="{% url 'add_maintenance' %}" class="btn btn-secondary">
+        <i class="bi bi-plus-circle me-2"></i>Add Maintenance
       </a>
     </div>
-  </div>
   {% endif %}
-</div>
-
-<style>
-  .table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .table td {
-    vertical-align: middle;
-    padding: 1rem 0.75rem;
-  }
-  
-  .btn-sm {
-    padding: 0.4rem 0.6rem;
-    border-radius: 0.4rem;
-  }
-  
-  .badge {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.75rem;
-  }
-</style>
+  </div>
 {% endblock %}

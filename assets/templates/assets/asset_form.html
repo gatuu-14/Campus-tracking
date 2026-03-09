@@ -6,161 +6,59 @@
 
 {% block content %}
 <div class="container mt-4">
+
   <!-- Page Header -->
-  <div class="page-header">
-    <h1 class="page-title">
+  <div class="page-header p-4 rounded-3 mb-4 border">
+    <h1 class="h4 fw-bold mb-1">
       {% if form.instance.id %}Edit Asset{% else %}Add New Asset{% endif %}
     </h1>
-    <p class="page-subtitle">
+    <p class="mb-0">
       {% if form.instance.id %}
-        Update existing asset information
+        Update asset information
       {% else %}
-        Register a new asset to the tracking system
+        Register a new asset
       {% endif %}
     </p>
   </div>
 
   <!-- Form Card -->
-  <div class="card shadow">
-    <div class="card-header bg-success text-white">
-      <h5 class="card-title mb-0">
-        <i class="bi {% if form.instance.id %}bi-pencil{% else %}bi-plus-circle{% endif %} me-2"></i>
-        {% if form.instance.id %}Edit Asset{% else %}New Asset Information{% endif %}
-      </h5>
-    </div>
+  <div class="card">
     <div class="card-body">
-      <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-          <i class="bi bi-exclamation-triangle me-2"></i>
-          {{ form.non_field_errors }}
-        </div>
+          <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+          </div>
         {% endif %}
 
         <div class="row">
           {% for field in form %}
           <div class="col-md-6 mb-3">
-            <label for="{{ field.id_for_label }}" class="form-label fw-semibold">
-              {{ field.label }}
-              {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
-            </label>
-            
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
             {{ field }}
-            
             {% if field.help_text %}
-            <div class="form-text text-muted small">
-              <i class="bi bi-info-circle me-1"></i>{{ field.help_text }}
-            </div>
+            <div class="form-text">{{ field.help_text }}</div>
             {% endif %}
-            
             {% if field.errors %}
-            <div class="text-danger small mt-1">
-              <i class="bi bi-exclamation-circle me-1"></i>
-              {{ field.errors|striptags }}
-            </div>
+            <div class="text-danger small">{{ field.errors|striptags }}</div>
             {% endif %}
           </div>
           {% endfor %}
         </div>
 
         <!-- Action Buttons -->
-        <div class="mt-4 pt-3 border-top">
-          <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-success">
-              <i class="bi bi-save me-2"></i>
-              {% if form.instance.id %}Update Asset{% else %}Create Asset{% endif %}
-            </button>
-            <a href="{% url 'asset_list' %}" class="btn btn-outline-secondary">
-              <i class="bi bi-arrow-left me-2"></i>Cancel
-            </a>
-          </div>
+        <div class="mt-4">
+          <button type="submit" class="btn btn-success">
+            {% if form.instance.id %}Update{% else %}Create{% endif %}
+          </button>
+          <a href="{% url 'asset_list' %}" class="btn btn-outline-success">Cancel</a>
         </div>
+
       </form>
     </div>
   </div>
+
 </div>
-
-<style>
-  .form-control, .form-select {
-    border: 2px solid #e9ecef;
-    border-radius: 6px;
-    padding: 0.75rem;
-    transition: all 0.3s ease;
-  }
-
-  .form-control:focus, .form-select:focus {
-    border-color: #157347;
-    box-shadow: 0 0 0 0.2rem rgba(21, 115, 71, 0.1);
-  }
-
-  .form-label {
-    color: #495057;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-text {
-    font-size: 0.8rem;
-  }
-
-  /* Style checkboxes and radio buttons if present */
-  input[type="checkbox"], input[type="radio"] {
-    margin-right: 0.5rem;
-  }
-
-  /* Improve file input styling */
-  input[type="file"] {
-    padding: 0.5rem;
-  }
-</style>
-
-<script>
-  // Add Bootstrap validation
-  document.addEventListener('DOMContentLoaded', function() {
-    // Apply Bootstrap styling to form elements
-    const inputs = document.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-      input.classList.add('form-control');
-      
-      // Style select elements specifically
-      if (input.tagName === 'SELECT') {
-        input.classList.add('form-select');
-      }
-      
-      // Style file inputs
-      if (input.type === 'file') {
-        input.classList.add('form-control');
-      }
-      
-      // Style checkboxes and radios
-      if (input.type === 'checkbox' || input.type === 'radio') {
-        input.classList.remove('form-control');
-        input.classList.add('form-check-input');
-        
-        // Wrap checkboxes and radios in proper Bootstrap structure
-        const parentDiv = input.parentElement;
-        if (parentDiv && !parentDiv.classList.contains('form-check')) {
-          parentDiv.classList.add('form-check');
-          const label = parentDiv.querySelector('label');
-          if (label) {
-            label.classList.add('form-check-label');
-          }
-        }
-      }
-    });
-
-    // Form validation
-    const forms = document.querySelectorAll('.needs-validation');
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  });
-</script>
 {% endblock %}

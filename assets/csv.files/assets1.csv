@@ -1,0 +1,11 @@
+name,category,serial_number,department,assigned_to,purchase_date,condition,status,description
+Filing Cabinet,Office Furniture,FIL001,Student Affairs Office,Unassigned,2025-09-12,Good,Available,Steel 4-drawer filing cabinet
+Waiting Area Sofa,Office Furniture,FUR001,Student Affairs Office,Linda,2025-02-18,Good,Available,Leather waiting area sofa
+Office Desk,Office Furniture,DESK010,Procurement Department,Unassigned,2025-06-25,Good,Available,Wooden executive office desk
+Office Chair,Office Furniture,CHR001,Procurement Department,Gatwiri,2025-11-14,Good,Available,Ergonomic swivel office chair
+Photocopier,Electrical Appliances,PHC001,Library & Resource Center,Unassigned,2025-11-05,Fair,Available,High-capacity photocopy machine
+Bookshelf,Office Furniture,BSH001,Library & Resource Center,Linda,2025-11-20,Good,Available,Metal library bookshelf
+Vehicle Jack,Vehicles & Transport,TRN001,Transport Office,Unassigned,2025-12-10,Good,Available,Hydraulic vehicle jack
+Tool Cabinet,Maintenance Equipment,TLB001,Transport Office,Unassigned,2025-10-30,Good,Available,Steel tool storage cabinet
+Laboratory Microscope,Laboratory Equipment,LAB001,Research & Innovation Department,Linda,2025-01-15,Good,Available,Optical research microscope
+Data Collection Tablet,Research Equipment,RDT001,Research & Innovation Department,Unassigned,2026-01-05,Good,Available,Tablet for field data collection
