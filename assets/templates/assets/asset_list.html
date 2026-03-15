@@ -30,14 +30,16 @@
   <div class="card border">
     <div class="card-body p-0">
       <table class="table table-hover mb-0">
-        <thead class="table-light">
+        <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Category</th>
+            <th>Serial Number</th>
             <th>Condition</th>
             <th>Department</th>
             <th>Status</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -46,6 +48,7 @@
             <td>{{ forloop.counter }}</td>
             <td>{{ asset.name }}</td>
             <td>{{ asset.category }}</td>
+            <td>{{ asset.serial_number }}</td>
             <td>{{ asset.condition }}</td>
             <td>{{ asset.department.name|default:"-" }}</td>
             <td>{{ asset.status }}</td>

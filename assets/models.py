@@ -46,8 +46,7 @@ class Asset(models.Model):
     description = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     current_user = models.CharField(max_length=100, blank=True, null=True)
-    last_checked_out = models.DateTimeField(blank=True, null=True)
-    expected_return_time = models.DateTimeField(blank=True, null=True)
+    
 
     def __str__(self):
         return f"{self.name} ({self.serial_number})"
@@ -65,7 +64,7 @@ class AssetMovement(models.Model):
     date_moved = models.DateTimeField(auto_now_add=True)
     remarks = models.TextField(blank=True)
 
-    # Store category for batch movement 
+    # Store category for batch movement fill when a assetcategory is moved 
     category = models.ForeignKey(AssetCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
 

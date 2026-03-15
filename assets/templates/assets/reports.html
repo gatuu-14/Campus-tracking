@@ -18,7 +18,7 @@
     <div class="card-body p-0">
       <table class="table table-bordered table-hover mb-0"> <!-- add borders around all cells -->
         <!--  Assets List Table -->
-        <thead class="table-light">
+        <thead>
           <tr>
             <th colspan="11" class="text-center">Assets List ({{ assets|length }})</th>
           </tr>
@@ -59,7 +59,7 @@
         </tbody>
 
         <!--  Categories List Table -->
-        <thead class="table-light mt-4">
+        <thead class="mt-4">
           <tr>
             <th colspan="2" class="text-center">Category Summary ({{ assets_by_category|length }})</th>
           </tr>
@@ -82,7 +82,7 @@
         </tbody>
 
         <!--  Departments List Table -->
-        <thead class="table-light mt-4">
+        <thead class="mt-4">
           <tr>
             <th colspan="2" class="text-center">Department Summary ({{ assets_by_department|length }})</th>
           </tr>
@@ -108,9 +108,7 @@
   </div>
 </div>
 <style>
-  .table th, .table td { padding: 0.5rem; vertical-align: middle; }
-  .table th { font-weight: 600; background-color: #e7eaee; }
-
+  
   @media print {
   nav, .btn, .page-header {
     display: none;

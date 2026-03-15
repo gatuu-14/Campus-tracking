@@ -103,38 +103,39 @@
             </div> 
          </div>
 
-    <!-- Department Table -->
-  <div class="card">  <!-- Card has border-radius -->
-    <div class="card-header"> 
-      <h5 class="mb-0">Department Asset Distribution</h5>
+   
+        <!-- Department Table -->
+  <div class="card">
+    <div class="card-body p-0"> <!-- No padding so table touches edges -->
+        <table class="table table-hover mb-0">  <!-- Table fills card -->
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Department Asset Distribution</th>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <th>Head of Department</th>
+                    <th class="text-center">Assets</th>
+                    <th class="text-center">Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dept in departments_with_assets %}
+                <tr>
+                    <td>{{ dept.name }}</td>
+                    <td>{{ dept.head_of_department|default:"-" }}</td>
+                    <td class="text-center">{{ dept.asset_count }}</td>
+                    <td class="text-center">{{ dept.percentage }}%</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No department data available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+     </div>
     </div>
-    <div class="card-body p-0">  <!-- No padding so table touches edges -->
-      <table class="table table-hover mb-0">  <!-- Table fills card -->
-        <thead>
-          <tr>
-            <th>Department</th>
-            <th>Head of Department</th>
-            <th class="text-center">Assets</th>
-            <th class="text-center">Percentage</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for dept in departments_with_assets %}
-          <tr>
-            <td>{{ dept.name }}</td>
-            <td>{{ dept.head_of_department|default:"-" }}</td>
-            <td class="text-center">{{ dept.asset_count }}</td>
-            <td class="text-center">{{ dept.percentage }}%</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="4" class="text-center">No department data available</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
   <script> 
     // Condition Chart 
     const conditionCtx = document.getElementById('conditionChart'); 

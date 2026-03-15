@@ -5,7 +5,7 @@
 
 
 /* Main content area background */
-#page-content body {
+ body {
     background-color: #f8f9fa;  /* Light gray  */
     min-height: 100vh;
     display: flex;
@@ -124,6 +124,7 @@
 .table {
     margin-bottom: 0;         /* Removes extra space */
 }
+
 
 
 /* Empty state card */
