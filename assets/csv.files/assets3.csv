@@ -1,16 +1,11 @@
 name,category,serial_number,department,assigned_to,purchase_date,condition,status,description
 Laptop,Computers & Laptops,LAP101,E-Learning & Digital Media Unit,Unassigned,2025-02-15,Good,Available,Content creation laptop
-Digital Camera,Media Equipment,MED001,E-Learning & Digital Media Unit,Linda,2026-01-01,Good,Available,HD video recording camera
-Audio Mixer,Media Equipment,MED002,E-Learning & Digital Media Unit,Unassigned,2025-11-05,Good,Available,Studio audio mixing console
+Digital Camera,Audio and Media Equipment,MED001,E-Learning & Digital Media Unit,Linda,2026-01-01,Good,Available,HD video recording camera
+Audio Mixer,Audio and Media Equipment,MED002,E-Learning & Digital Media Unit,Unassigned,2025-11-05,Good,Available,Studio audio mixing console
 Office Desktop,Computers & Laptops,DESK201,Human Resources (HR),Unassigned,2025-01-20,Good,In Use,HR staff desktop computer
-Fingerprint Scanner,Electrical Appliances,BIO001,Human Resources (HR),Linda,2025-04-12,Good,Available,Employee attendance scanner
+Printer,Electrical Appliances,PIO001,Human Resources (HR),Linda,2025-04-12,Good,Available,Employee attendance scanner
 Network Switch,Networking Devices,NET201,Lecture Admin,Unassigned,2025-08-25,Good,Available,24-port lecture hall switch
 Wireless Router,Networking Devices,NET202,Lecture Admin,Unassigned,2025-03-18,Good,Available,High-speed campus router
-Lecture Podium,Furniture,FUR201,Lecture Admin,Linda,2025-06-14,Fair,Available,Wooden lecture podium
+Lecture Podium,Office Furniture,FUR201,Lecture Admin,Linda,2025-06-14,Fair,Available,Wooden lecture podium
 Procurement Laptop,Computers & Laptops,LAP202,Procurement Department,Unassigned,2025-05-08,Good,Available,Procurement officer laptop
-Barcode Scanner,Office Equipment,OFF201,Procurement Department,Gatwiri,2025-10-30,Good,Available,Asset barcode scanner
-Filing Cabinet,Office Furniture,FIL201,Procurement Department,Unassigned,2025-04-19,Good,Available,Secure document storage cabinet
-Student Help Desk PC,Computers & Laptops,DESK301,Student Affairs Office,Unassigned,2025-02-28,Good,In Use,Front desk support computer
-Queue Management Screen,Electrical Appliances,DIS001,Student Affairs Office,Gatwiri,2025-01-15,Good,Available,Student service display screen
-Access Point,Networking Devices,NET301,Library & Resource Center,Unassigned,2026-01-22,Good,Available,Library wireless access point
-Security Camera,Security Equipment,SEC001,Library & Resource Center,Gatwiri,2026-01-05,Fair,Available,Indoor surveillance camera
+

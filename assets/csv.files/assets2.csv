@@ -1,11 +1,10 @@
 name,category,serial_number,department,assigned_to,purchase_date,condition,status,description
-Video Recording Camera,Media Equipment,MED001,E-Learning & Digital Media Unit,Linda,2026-02-14,Good,Available,HD video camera for lecture recording
-Audio Mixing Console,Media Equipment,MED002,E-Learning & Digital Media Unit,Unassigned,2026-01-30,Good,Available,Digital audio mixer for media production
+Video Recording Camera,Audio and Media Equipment,MED001,E-Learning & Digital Media Unit,Linda,2026-02-14,Good,Available,HD video camera for lecture recording
+Audio Mixing Speaker,Audio and Media Equipment,MED002,E-Learning & Digital Media Unit,Unassigned,2026-01-30,Good,Available,Digital audio mixer for media production
 Personnel Filing Cabinet,Office Furniture,HR001,Human Resources (HR),Unassigned,2026-01-18,Good,Available,Secure filing cabinet for staff records
-Biometric Attendance Device,Office Furniture,HR002,Human Resources (HR),Linda,2025-11-05,Good,Available,Employee biometric attendance system
 Lecture Timetable Notice Board,Office Furniture,LEC001,Lecture Admin,Unassigned,2025-11-22,Good,Available,Wall-mounted timetable notice board
-Public Address Speaker,Audio Equipment,LEC002,Lecture Admin,Unassigned,2025-08-10,Good,Available,Portable PA speaker for lecture announcements
-Document Shredder,Office Equipment,PRC002,Procurement Department,Gatwiri,2025-07-19,Good,Available,Heavy-duty document shredder
+Public Address Speaker,Audio and Media Equipment,LEC002,Lecture Admin,Unassigned,2025-08-10,Good,Available,Portable PA speaker for lecture announcements
+Document Shredder,Electrical Appliances,PRC002,Procurement Department,Gatwiri,2025-07-19,Good,Available,Heavy-duty document shredder
 Safe Storage Cabinet,Office Furniture,PRC003,Procurement Department,Unassigned,2025-10-12,Good,Available,Lockable cabinet for procurement files
 Student Records Shelf,Office Furniture,SA002,Student Affairs Office,Linda,2025-05-08,Good,Available,Open shelving for student files
 Queue Management Display,Office Furniture,SA003,Student Affairs Office,Unassigned,2025-01-25,Good,Available,Digital queue display system
