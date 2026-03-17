@@ -15,14 +15,10 @@
   <div class="d-flex justify-content-between align-items-center mb-3">
     <form method="get" class="d-flex gap-2">
       <input type="text" name="q" value="{{ query }}" class="form-control form-control-sm" placeholder="Search...">
-      <button type="submit" class="btn btn-sm btn-success">
-        <i class="bi bi-search"></i>
-      </button>
+       <button type="submit" class="btn btn-sm btn-success">Search</button>
     </form>
 
-    <a href="{% url 'add_asset' %}" class="btn btn-sm btn-success">
-      <i class="bi bi-plus-circle me-1"></i> Add asset
-    </a>
+     <a href="{% url 'add_asset' %}" class="btn btn-sm btn-success">Add asset</a>
   </div>
 
   <!-- Assets Table -->
@@ -60,15 +56,12 @@
   </div>
   {% else %}
   
-    <!-- Empty State Table -->
-  <div class="card border text-center ">
+     <!-- Empty State Table -->
+  <div class="card border text-center">
     <div class="card-body">
-      <i class="bi bi-arrow-left-right display-4 d-block mb-3"></i>
       <h5 class="mb-3">No Assets Records Found</h5>
       <p class="mb-4">Add assets to populate the system.</p>
-      <a href="{% url 'add_asset' %}" class="btn btn-success">
-        <i class="bi bi-plus-circle me-2"></i>Add Asset
-      </a>
+      <a href="{% url 'add_asset' %}" class="btn btn-success">Add Asset</a>
     </div>
   </div>
   {% endif %}

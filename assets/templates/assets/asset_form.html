@@ -22,9 +22,12 @@
   </div>
 
   <!-- Form Card -->
-  <div class="card">
+  <div class="card border">
+    <div class="card-header ">
+      <h6 class="mb-0">Asset Information</h6>  
+    </div>
     <div class="card-body">
-      <form method="POST" enctype="multipart/form-data">
+      <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
 
         {% if form.non_field_errors %}
